@@ -47,9 +47,9 @@ public partial class Player : CharacterBody2D
 		bool interactionJust = Input.IsActionJustPressed("interaction");
 
 		if(interaction || interactionJust)
-        {
-            HandleInteraction();
-        }
+		{
+			HandleInteraction();
+		}
 
 
 		// Block vertical opposites
@@ -72,12 +72,12 @@ public partial class Player : CharacterBody2D
 		StartStep(dir);
 	}
 
-    private void HandleInteraction()
-    {
-        //TODO
-    }
+	private void HandleInteraction()
+	{
+		//TODO
+	}
 
-    private void StartStep(Vector2 dir)
+	private void StartStep(Vector2 dir)
 	{
 		_isMoving = true;
 		_stepTimer = 0f;
