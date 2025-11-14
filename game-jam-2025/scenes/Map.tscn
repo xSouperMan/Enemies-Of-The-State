@@ -33,12 +33,16 @@ texture = ExtResource("2_lajc7")
 7:4/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_tm3qm"]
+physics_layer_0/collision_layer = 1
+custom_data_layer_0/name = "solid"
+custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_xkm8s")
 
 [node name="World" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_5hauk")]
+[node name="Player" parent="." node_paths=PackedStringArray("TileMapLayer") instance=ExtResource("1_5hauk")]
 z_index = 50
+TileMapLayer = NodePath("../TileMapLayer")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(7, 7)

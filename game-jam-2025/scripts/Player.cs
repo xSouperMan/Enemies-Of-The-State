@@ -4,8 +4,8 @@ using System;
 public partial class Player : CharacterBody2D
 {
 	[Export] public int TILE_SIZE = 16;
-
 	[Export] public float StepTime = 0.3f;
+	[Export] public TileMapLayer TileMapLayer;
 
 	private bool _isMoving;
 	private Vector2 _startPos;
@@ -32,7 +32,6 @@ public partial class Player : CharacterBody2D
 	{
 		Vector2 dir = Vector2.Zero;
 
-		// Ignore opposite vertical inputs
 		bool up = Input.IsActionPressed("move_up");
 		bool down = Input.IsActionPressed("move_down");
 		bool left = Input.IsActionPressed("move_left");
@@ -46,30 +45,56 @@ public partial class Player : CharacterBody2D
 		bool interaction = Input.IsActionPressed("interaction");
 		bool interactionJust = Input.IsActionJustPressed("interaction");
 
-		if(interaction || interactionJust)
+		if((interaction || interactionJust) && CheckIfInteractable())
 		{
-			HandleInteraction();
+			{
+				HandleInteraction();
+			}
 		}
 
 
-		// Block vertical opposites
 		if ((up || upJust) && !(down || downJust))
+		{
 			dir = Vector2.Up;
+		}
 		else if ((down || downJust) && !(up || upJust))
+		{
 			dir = Vector2.Down;
-		// Block horizontal opposites
+		}
 		else if ((right || rightJust) && !(left || leftJust))
+		{
 			dir = Vector2.Right;
+		}
 		else if ((left || leftJust) && !(right || rightJust))
+		{
 			dir = Vector2.Left;
+		}
 
 		if (dir == Vector2.Zero)
 		{
-			_isMoving = false;
-			return;
+			{
+				_isMoving = false;
+				return;
+			}
+		}
+
+		Vector2 candidate = GlobalPosition + dir * TILE_SIZE;
+		if (!CanMoveTo(candidate))
+		{
+			{
+				_isMoving = false;
+				return;
+			}
 		}
 
 		StartStep(dir);
+	}
+
+	private bool CheckIfInteractable()
+	{
+		//TODO
+
+		return false;
 	}
 
 	private void HandleInteraction()
@@ -95,10 +120,12 @@ public partial class Player : CharacterBody2D
 
 		if (t >= 1f)
 		{
-			GlobalPosition = _targetPos.Snapped(Vector2.One * TILE_SIZE);
-			_startPos = GlobalPosition;
+			{
+				GlobalPosition = _targetPos.Snapped(Vector2.One * TILE_SIZE);
+				_startPos = GlobalPosition;
 
-			TryContinueMovement();
+				TryContinueMovement();
+			}
 		}
 	}
 
@@ -106,30 +133,74 @@ public partial class Player : CharacterBody2D
 	{
 		Vector2 dir = Vector2.Zero;
 
-		// Simple pressed states (no JustPressed needed here)
 		bool up = Input.IsActionPressed("move_up");
 		bool down = Input.IsActionPressed("move_down");
 		bool left = Input.IsActionPressed("move_left");
 		bool right = Input.IsActionPressed("move_right");
 
-		// Block vertical opposites
 		if (up && !down)
+		{
 			dir = Vector2.Up;
+		}
 		else if (down && !up)
+		{
 			dir = Vector2.Down;
-		// Block horizontal opposites
+		}
 		else if (right && !left)
+		{
 			dir = Vector2.Right;
+		}
 		else if (left && !right)
+		{
 			dir = Vector2.Left;
+		}
 		else
 		{
-			_isMoving = false;
-			return;
+			{
+				_isMoving = false;
+				return;
+			}
+		}
+
+		Vector2 candidate = _startPos + dir * TILE_SIZE;
+		if (!CanMoveTo(candidate))
+		{
+			{
+				_isMoving = false;
+				return;
+			}
 		}
 
 		_isMoving = true;
 		_stepTimer = 0;
-		_targetPos = _startPos + dir * TILE_SIZE;
+		_targetPos = candidate;
+	}
+
+	private bool CanMoveTo(Vector2 targetWorldPos)
+	{
+		if (TileMapLayer == null)
+		{
+			GD.Print("TML null");
+			return true;
+		}
+
+		Vector2 localPos = TileMapLayer.ToLocal(targetWorldPos);
+		Vector2I tileCoords = TileMapLayer.LocalToMap(localPos);
+
+		var tileData = TileMapLayer.GetCellTileData(tileCoords);
+		if (tileData == null)
+		{
+			GD.Print("TD null");
+			return true;
+		}
+
+		Variant v = tileData.GetCustomData("solid");
+
+		bool solid = false;
+		if (v.VariantType != Variant.Type.Nil)
+		{
+			solid = (bool)v;
+		}
+		return !solid;
 	}
 }
