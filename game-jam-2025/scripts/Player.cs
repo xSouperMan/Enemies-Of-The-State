@@ -43,6 +43,15 @@ public partial class Player : CharacterBody2D
 		bool leftJust = Input.IsActionJustPressed("move_left");
 		bool rightJust = Input.IsActionJustPressed("move_right");
 
+		bool interaction = Input.IsActionPressed("interaction");
+		bool interactionJust = Input.IsActionJustPressed("interaction");
+
+		if(interaction || interactionJust)
+        {
+            HandleInteraction();
+        }
+
+
 		// Block vertical opposites
 		if ((up || upJust) && !(down || downJust))
 			dir = Vector2.Up;
@@ -63,7 +72,12 @@ public partial class Player : CharacterBody2D
 		StartStep(dir);
 	}
 
-	private void StartStep(Vector2 dir)
+    private void HandleInteraction()
+    {
+        //TODO
+    }
+
+    private void StartStep(Vector2 dir)
 	{
 		_isMoving = true;
 		_stepTimer = 0f;
