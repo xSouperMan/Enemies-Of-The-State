@@ -11,10 +11,15 @@ public partial class Player : CharacterBody2D
 	private Vector2 _startPos;
 	private Vector2 _targetPos;
 	private float _stepTimer = 0f;
+	private AnimationPlayer anim;
+	private Vector2 _facingDir = Vector2.Down;
 
 	public override void _Ready()
 	{
 		GlobalPosition = GlobalPosition.Snapped(Vector2.One * TILE_SIZE);
+
+		anim = GetNode<Sprite2D>("Sprite2D").GetNode<AnimationPlayer>("AnimationPlayer");
+		UpdateAnimation(false);
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -25,6 +30,33 @@ public partial class Player : CharacterBody2D
 		} else
 		{
 			HandleInput();
+		}
+	}
+
+	private void UpdateAnimation(bool isMoving)
+	{
+		if (anim == null)
+		{
+			return;
+		}
+
+		string prefix = isMoving ? "walk_" : "idle_";
+
+		if (_facingDir == Vector2.Up)
+		{
+			anim.Play(prefix + "up");
+		}
+		else if (_facingDir == Vector2.Down)
+		{
+			anim.Play(prefix + "down");
+		}
+		else if (_facingDir == Vector2.Left)
+		{
+			anim.Play(prefix + "left");
+		}
+		else if (_facingDir == Vector2.Right)
+		{
+			anim.Play(prefix + "right");
 		}
 	}
 
@@ -70,21 +102,24 @@ public partial class Player : CharacterBody2D
 			dir = Vector2.Left;
 		}
 
+		if (dir != Vector2.Zero)
+		{
+			_facingDir = dir;
+		}
+
 		if (dir == Vector2.Zero)
 		{
-			{
-				_isMoving = false;
-				return;
-			}
+			_isMoving = false;
+			UpdateAnimation(false);
+			return;
 		}
 
 		Vector2 candidate = GlobalPosition + dir * TILE_SIZE;
 		if (!CanMoveTo(candidate))
 		{
-			{
-				_isMoving = false;
-				return;
-			}
+			_isMoving = false;
+			UpdateAnimation(false);
+			return;
 		}
 
 		StartStep(dir);
@@ -109,6 +144,7 @@ public partial class Player : CharacterBody2D
 
 		_startPos = GlobalPosition;
 		_targetPos = _startPos + dir * TILE_SIZE;
+		UpdateAnimation(true);
 	}
 
 	private void MoveStep(float delta)
@@ -151,7 +187,7 @@ public partial class Player : CharacterBody2D
 				if (node is Teleporter t)
 				{
 					GD.Print(t.GlobalPosition);
-					if (t.GlobalPosition.DistanceTo(pos) < 1f) // oder ==, wenn du exakt auf dem Tile vergleichst
+					if (t.GlobalPosition.DistanceTo(pos) < 1f)
 						return t;
 				}
 			}
@@ -186,10 +222,14 @@ public partial class Player : CharacterBody2D
 		}
 		else
 		{
-			{
-				_isMoving = false;
-				return;
-			}
+			_isMoving = false;
+			UpdateAnimation(false);
+			return;
+		}
+
+		if (dir != Vector2.Zero)
+		{
+			_facingDir = dir;
 		}
 
 		Vector2 candidate = _startPos + dir * TILE_SIZE;
@@ -204,6 +244,7 @@ public partial class Player : CharacterBody2D
 		_isMoving = true;
 		_stepTimer = 0;
 		_targetPos = candidate;
+		UpdateAnimation(true);
 	}
 
 	private bool CanMoveTo(Vector2 targetWorldPos)

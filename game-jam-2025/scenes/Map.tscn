@@ -266,6 +266,7 @@ position = Vector2(-4528, -96)
 TileMapLayer = NodePath("../TileMapLayer")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+offset = Vector2(8, 8)
 zoom = Vector2(7, 7)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
