@@ -1,9 +1,11 @@
-[gd_scene load_steps=17 format=4 uid="uid://vgmn2wdrkaav"]
+[gd_scene load_steps=19 format=4 uid="uid://vgmn2wdrkaav"]
 
 [ext_resource type="PackedScene" uid="uid://4dj64hgycw1o" path="res://scenes/Player.tscn" id="1_5hauk"]
 [ext_resource type="Script" uid="uid://b1k075qxi6rx5" path="res://scenes/Map.cs" id="1_ii6k2"]
 [ext_resource type="Texture2D" uid="uid://cxgwwgibchfpm" path="res://assets/terrain/Street.png" id="2_lajc7"]
 [ext_resource type="PackedScene" uid="uid://d1pm8mt6t7wie" path="res://scenes/NPC.tscn" id="2_xkm8s"]
+[ext_resource type="Texture2D" uid="uid://d0yhooaknu84l" path="res://assets/objects/paper.png" id="3_46d0c"]
+[ext_resource type="Texture2D" uid="uid://cko32hpypw77a" path="res://assets/objects/Mail.png" id="3_d46yu"]
 [ext_resource type="Texture2D" uid="uid://cs0dnvm8jic58" path="res://assets/terrain/Environment_Tiles.png" id="3_inly4"]
 [ext_resource type="Script" uid="uid://6ld4xf1fj3ks" path="res://scripts/NPCManager.cs" id="3_tm3qm"]
 [ext_resource type="Texture2D" uid="uid://h7dd2sb1rce3" path="res://assets/objects/home_inside.png" id="3_xkm8s"]
@@ -500,11 +502,82 @@ sources/1 = SubResource("TileSetAtlasSource_46d0c")
 [node name="World" type="Node2D"]
 script = ExtResource("1_ii6k2")
 
-[node name="Player" parent="." node_paths=PackedStringArray("TileMapLayer1", "TileMapLayer2") instance=ExtResource("1_5hauk")]
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="UIRoot" type="Control" parent="CanvasLayer2"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Paper" type="TextureRect" parent="CanvasLayer2/UIRoot"]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 797.0
+offset_top = 204.0
+offset_right = 847.0
+offset_bottom = 284.0
+scale = Vector2(4.6807947, 5.0540466)
+texture = ExtResource("3_46d0c")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer2/UIRoot/Paper"]
+layout_mode = 0
+offset_left = 4.7000527
+offset_top = 3.7593637
+offset_right = 189.87006
+offset_bottom = 333.80936
+scale = Vector2(0.22, 0.22)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Officer,
+
+we have a job for you today.
+
+Make sure to arrest at least 3 people that would be considered an enemy of our state.
+You have until nightfall.
+
+
+
+- Supreme Leader"
+scroll_active = false
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer2/UIRoot/Paper"]
+layout_mode = 0
+offset_left = 33.586
+offset_top = 0.989
+offset_right = 169.35602
+offset_bottom = 29.519001
+scale = Vector2(0.11, 0.11)
+theme_override_colors/default_color = Color(0.24296579, 0.24296573, 0.24296573, 1)
+text = "Press [E] to close"
+
+[node name="Mail" type="TextureRect" parent="CanvasLayer2/UIRoot"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 893.0
+offset_top = 598.0
+offset_right = 933.0
+offset_bottom = 638.0
+texture = ExtResource("3_d46yu")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer2/UIRoot/Mail"]
+layout_mode = 0
+offset_left = 13.08
+offset_right = 53.08
+offset_bottom = 40.0
+scale = Vector2(0.73, 0.73)
+text = "[E]"
+
+[node name="Player" parent="." node_paths=PackedStringArray("TileMapLayer1", "TileMapLayer2", "Paper", "Mail") instance=ExtResource("1_5hauk")]
 z_index = 50
 position = Vector2(-4528, -96)
 TileMapLayer1 = NodePath("../TileMapLayers/TileMapLayer")
 TileMapLayer2 = NodePath("../TileMapLayers/TileMapLayer2")
+Paper = NodePath("../CanvasLayer2/UIRoot/Paper")
+Mail = NodePath("../CanvasLayer2/UIRoot/Mail")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(8, 8)
@@ -579,5 +652,11 @@ offset_bottom = 23.0
 grow_horizontal = 0
 text = "0:00"
 horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 947.03
+offset_right = 1106.9255
+offset_bottom = 40.0
+text = "Time until nightfall:"
 
 [connection signal="timeout" from="DayTimer" to="." method="_on_timer_timeout"]

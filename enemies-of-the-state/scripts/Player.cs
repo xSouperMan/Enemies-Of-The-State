@@ -7,6 +7,8 @@ public partial class Player : CharacterBody2D
 	[Export] public float StepTime = 0.3f;
 	[Export] public TileMapLayer TileMapLayer1;
 	[Export] public TileMapLayer TileMapLayer2;
+	[Export] public TextureRect Paper;
+	[Export] public TextureRect Mail;
 
 	private bool _isMoving;
 	private Vector2 _startPos;
@@ -75,12 +77,26 @@ public partial class Player : CharacterBody2D
 		bool leftJust = Input.IsActionJustPressed("move_left");
 		bool rightJust = Input.IsActionJustPressed("move_right");
 
-		//bool interaction = Input.IsActionPressed("interaction");
 		bool interactionJust = Input.IsActionJustPressed("interaction");
+
+		bool ePressed = Input.IsActionJustPressed("e");
 
 		if(interactionJust)
 		{
 			HandleInteraction();
+		}
+
+		if(ePressed && Mail != null && Paper != null)
+		{
+			if(Mail.Visible)
+			{
+				Mail.Visible = false;
+				Paper.Visible = true;
+			} else
+			{
+				Mail.Visible = true;
+				Paper.Visible = false;
+			}
 		}
 
 
@@ -134,8 +150,8 @@ public partial class Player : CharacterBody2D
 	{
 		Vector2 NPCpos = _startPos + _facingDir * TILE_SIZE;
 		if (NpcAt(NPCpos))
-        {
-            GD.Print("interaction avaliable");
+		{
+			GD.Print("interaction avaliable");
 
 			var npcs = GetTree().GetNodesInGroup("NPC");
 
