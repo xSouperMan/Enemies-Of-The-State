@@ -8,6 +8,8 @@ public partial class NPC : CharacterBody2D
 	public NPCData Data { get; private set; }
 	private Direction dir;
 	private AnimationPlayer anim;
+	private TextureRect dialogBubble;
+	private Label dialogLabel;
 
 	public void Initialize(NPCData data, Vector2 globalPosition)
 	{
@@ -17,6 +19,7 @@ public partial class NPC : CharacterBody2D
 		anim.Play("idle_down");
 		GlobalPosition = globalPosition;
 		GD.Print(GlobalPosition);
+		//dialogBubble.Visible = false;
 	}
 
 	public void Interact(Direction direction)
@@ -46,7 +49,8 @@ public partial class NPC : CharacterBody2D
 		switch (state)
 		{
 			case InteractionState.Greet:
-				GD.Print($"{Data.FirstName}: {Data.Greeting[0]}");
+				GD.Print($"greeted {Data.FirstName}: {Data.Greeting}");
+				ShowBubble(Data.Greeting);
 				state = InteractionState.Await;
 				break;
 
@@ -63,7 +67,25 @@ public partial class NPC : CharacterBody2D
     public override void _Ready()
     {
         AddToGroup("NPC");
+
+		var dialogBubble = GetNode<Bubble>("Bubble");
+
+		dialogLabel = dialogBubble.GetNode<Label>("TextureRect/Label");
+
+		dialogBubble.Visible = false;
     }
+
+	public void ShowBubble(string text)
+	{
+		var bubble = GetNode<Bubble>("Bubble");
+		bubble.ShowMessage(text);
+
+	}
+
+	public void HideBubble()
+	{
+		dialogBubble.Visible = false;
+	}
 
 	public void PlayerArrest()
 	{
