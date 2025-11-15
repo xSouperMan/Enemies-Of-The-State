@@ -488,9 +488,11 @@ sources/0 = SubResource("TileSetAtlasSource_ii6k2")
 [node name="World" type="Node2D"]
 script = ExtResource("1_ii6k2")
 
-[node name="Player" parent="." instance=ExtResource("1_5hauk")]
+[node name="Player" parent="." node_paths=PackedStringArray("TileMapLayer1", "TileMapLayer2") instance=ExtResource("1_5hauk")]
 z_index = 50
 position = Vector2(-4528, -96)
+TileMapLayer1 = NodePath("../TileMapLayers/TileMapLayer")
+TileMapLayer2 = NodePath("../TileMapLayers/TileMapLayer2")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(8, 8)
