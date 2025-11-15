@@ -51,11 +51,12 @@ sources/2 = SubResource("TileSetAtlasSource_yyirk")
 
 [node name="World" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_5hauk")]
+[node name="Player" parent="." node_paths=PackedStringArray("TileMapLayer") instance=ExtResource("1_5hauk")]
 z_index = 50
+TileMapLayer = NodePath("../TileMapLayer")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(5, 5)
+zoom = Vector2(7, 7)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 texture_filter = 1
