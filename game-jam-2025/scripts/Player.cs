@@ -124,10 +124,40 @@ public partial class Player : CharacterBody2D
 				GlobalPosition = _targetPos.Snapped(Vector2.One * TILE_SIZE);
 				_startPos = GlobalPosition;
 
+				var tp = GetTeleporterAt(GlobalPosition);
+				if (tp != null)
+					{
+						if(tp.teleport_to == null) {
+							return;
+						}
+						GD.Print(tp.teleport_to.GlobalPosition);
+						GlobalPosition = tp.teleport_to.GlobalPosition;
+						_isMoving = false;
+						return;
+					}
+
 				TryContinueMovement();
 			}
 		}
 	}
+
+	private Teleporter GetTeleporterAt(Vector2 pos)
+		{
+			var teleporterNodes = GetTree().GetNodesInGroup("Teleporters");
+			GD.Print(teleporterNodes.Count);
+			foreach (Node node in teleporterNodes)
+			{
+				GD.Print(node);
+				if (node is Teleporter t)
+				{
+					GD.Print(t.GlobalPosition);
+					if (t.GlobalPosition.DistanceTo(pos) < 1f) // oder ==, wenn du exakt auf dem Tile vergleichst
+						return t;
+				}
+			}
+
+			return null;
+		}
 
 	private void TryContinueMovement()
 	{
@@ -191,7 +221,7 @@ public partial class Player : CharacterBody2D
 		if (tileData == null)
 		{
 			GD.Print("TD null");
-			return true;
+			return false;
 		}
 
 		Variant v = tileData.GetCustomData("solid");
