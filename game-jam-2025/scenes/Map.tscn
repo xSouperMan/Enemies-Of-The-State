@@ -556,7 +556,6 @@ autostart = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="TimeLabel" type="Label" parent="CanvasLayer"]
-z_index = 100
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
