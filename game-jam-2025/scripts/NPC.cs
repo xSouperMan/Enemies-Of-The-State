@@ -1,3 +1,4 @@
+using System.Security.AccessControl;
 using Godot;
 
 public partial class NPC : CharacterBody2D
@@ -5,14 +6,41 @@ public partial class NPC : CharacterBody2D
 	enum InteractionState{Greet, Await, Finished}
 	private InteractionState state = InteractionState.Greet;
 	public NPCData Data { get; private set; }
+	private Direction dir;
+	private AnimationPlayer anim;
 
 	public void Initialize(NPCData data)
 	{
+		anim = GetNode<Sprite2D>("Sprite2D").GetNode<AnimationPlayer>("AnimationPlayer");
 		Data = data;
+		dir = Direction.DOWN;
+		anim.Play("idle_down");
 	}
 
-	public void Interact()
+	public void Interact(Direction direction)
 	{
+		if(direction!=dir)
+		{
+			switch(direction)
+			{
+				case Direction.DOWN:
+					anim.Play("idle_down");
+					break;
+
+				case Direction.LEFT:
+					anim.Play("idle_left");
+					break;
+
+				case Direction.UP:
+					anim.Play("idle_up");
+					break;
+
+				case Direction.RIGHT:
+					anim.Play("idle_right");
+					break;
+			}
+		}
+		
 		switch (state)
 		{
 			case InteractionState.Greet:
