@@ -9,12 +9,14 @@ public partial class NPC : CharacterBody2D
 	private Direction dir;
 	private AnimationPlayer anim;
 
-	public void Initialize(NPCData data)
+	public void Initialize(NPCData data, Vector2 globalPosition)
 	{
 		anim = GetNode<Sprite2D>("Sprite2D").GetNode<AnimationPlayer>("AnimationPlayer");
 		Data = data;
 		dir = Direction.DOWN;
 		anim.Play("idle_down");
+		GlobalPosition = globalPosition;
+		GD.Print(GlobalPosition);
 	}
 
 	public void Interact(Direction direction)

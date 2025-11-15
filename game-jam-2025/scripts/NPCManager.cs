@@ -114,9 +114,7 @@ public partial class NPCManager : Node
 				GD.PrintErr($"Failed to get NPC script on instance {i}!");
 			}
 
-			npcNode.Initialize(NPClist[i]);
-
-			npcNode.GlobalPosition = ((Node2D)NPCLocations[i]).GlobalPosition;
+			npcNode.Initialize(NPClist[i], ((Node2D)NPCLocations[i]).GlobalPosition);
 
 			AddChild(npcNode);
 		}    

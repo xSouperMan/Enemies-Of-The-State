@@ -5,7 +5,8 @@ public partial class Player : CharacterBody2D
 {
 	[Export] public int TILE_SIZE = 16;
 	[Export] public float StepTime = 0.3f;
-	[Export] public TileMapLayer TileMapLayer;
+	[Export] public TileMapLayer TileMapLayer1;
+	[Export] public TileMapLayer TileMapLayer2;
 
 	private bool _isMoving;
 	private Vector2 _startPos;
@@ -249,7 +250,7 @@ public partial class Player : CharacterBody2D
 
 	private bool CanMoveTo(Vector2 targetWorldPos)
 	{
-		if (TileMapLayer == null)
+		if (TileMapLayer1 == null || TileMapLayer2 == null)
 		{
 			GD.Print("TML null");
 			return true;
@@ -260,23 +261,41 @@ public partial class Player : CharacterBody2D
 			return false;
 		}
 
-		Vector2 localPos = TileMapLayer.ToLocal(targetWorldPos);
-		Vector2I tileCoords = TileMapLayer.LocalToMap(localPos);
+		Vector2 localPos1 = TileMapLayer1.ToLocal(targetWorldPos);
+		Vector2I tileCoords1 = TileMapLayer1.LocalToMap(localPos1);
+		Vector2 localPos2 = TileMapLayer2.ToLocal(targetWorldPos);
+		Vector2I tileCoords2 = TileMapLayer2.LocalToMap(localPos2);
 
-		var tileData = TileMapLayer.GetCellTileData(tileCoords);
-		if (tileData == null)
+		var tileData1 = TileMapLayer1.GetCellTileData(tileCoords1);
+		var tileData2 = TileMapLayer2.GetCellTileData(tileCoords2);
+		if (tileData1 == null && tileData2 == null)
 		{
 			GD.Print("TD null");
 			return false;
 		}
 
-		Variant v = tileData.GetCustomData("solid");
-
 		bool solid = false;
-		if (v.VariantType != Variant.Type.Nil)
+
+		if(tileData1 != null)
 		{
-			solid = (bool)v;
+			Variant v1 = tileData1.GetCustomData("solid");
+			if (v1.VariantType != Variant.Type.Nil)
+			{
+				solid = (bool)v1;
+				GD.Print(solid+"1");
+			} 
 		}
+		
+		if(tileData2 != null)
+		{
+			Variant v2 = tileData2.GetCustomData("solid");
+			if (!solid && v2.VariantType != Variant.Type.Nil)
+			{
+				solid = (bool)v2;
+				GD.Print(solid+"2");
+			}
+		}
+		
 		return !solid;
 	}
 
