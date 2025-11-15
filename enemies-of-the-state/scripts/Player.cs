@@ -139,19 +139,44 @@ public partial class Player : CharacterBody2D
 
 			var npcs = GetTree().GetNodesInGroup("NPC");
 
+			NPC currentNPC = new NPC();
+
 			foreach (Node2D npcNode in npcs)
 			{
 				if (npcNode is NPC npc)
 				{
 					if (NPCpos.DistanceTo(npc.GlobalPosition) <= 1f)
 					{
-						GD.Print("Found NPC: " + npc.Data.FirstName);
+						currentNPC = npc;
+						GD.Print("Found NPC: " + currentNPC.Data.FirstName);
 					}
 				}
 				GD.Print("something went wrong");
 			}
+
+			currentNPC.Interact(VectorToInvertedDirection(_facingDir));
         }
 	}
+
+	private Direction VectorToInvertedDirection(Vector2 vec)
+    {
+        if (_facingDir == Vector2.Up)
+        {
+            return Direction.DOWN;
+        }  
+        else if (_facingDir == Vector2.Down)
+        {
+            return Direction.UP;
+        }    
+        else if (_facingDir == Vector2.Left)
+        {
+            return Direction.RIGHT;
+        }  
+        else
+		{
+            return Direction.LEFT;
+        }          
+    }
 
 	private void StartStep(Vector2 dir)
 	{
