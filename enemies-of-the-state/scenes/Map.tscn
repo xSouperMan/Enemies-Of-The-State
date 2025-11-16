@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=4 uid="uid://vgmn2wdrkaav"]
 
 [ext_resource type="PackedScene" uid="uid://4dj64hgycw1o" path="res://scenes/Player.tscn" id="1_5hauk"]
-[ext_resource type="Script" path="res://scenes/Map.cs" id="1_ii6k2"]
+[ext_resource type="Script" uid="uid://b35q1s0r4es1f" path="res://scripts/Map.cs" id="1_pgwcf"]
 [ext_resource type="Texture2D" uid="uid://cxgwwgibchfpm" path="res://assets/terrain/Street.png" id="2_lajc7"]
 [ext_resource type="PackedScene" uid="uid://d1pm8mt6t7wie" path="res://scenes/NPC.tscn" id="2_xkm8s"]
 [ext_resource type="Texture2D" uid="uid://d0yhooaknu84l" path="res://assets/objects/paper.png" id="3_46d0c"]
@@ -586,7 +586,7 @@ sources/0 = SubResource("TileSetAtlasSource_ii6k2")
 sources/1 = SubResource("TileSetAtlasSource_46d0c")
 
 [node name="World" type="Node2D"]
-script = ExtResource("1_ii6k2")
+script = ExtResource("1_pgwcf")
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 

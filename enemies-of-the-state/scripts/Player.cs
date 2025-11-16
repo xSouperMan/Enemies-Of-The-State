@@ -52,9 +52,13 @@ public partial class Player : CharacterBody2D
 	private void HandleKeyPress()
 	{
 		
-
+		bool EscPressed = Input.IsActionPressed("quit");
 		bool ePressed = Input.IsActionJustPressed("e");
 
+		if(EscPressed)
+		{
+			GetTree().Quit();
+		}
 		
 		if(ePressed && Mail != null && Paper != null)
 		{
