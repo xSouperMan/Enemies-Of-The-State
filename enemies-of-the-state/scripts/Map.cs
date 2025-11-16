@@ -16,6 +16,8 @@ public partial class Map : Node2D
 		_timeLabel = GetNode<Label>("CanvasLayer/TimeLabel");
 		player = GetNode<Player>("Player");
 		_dayTimer.Timeout += _OnDayTimerTimeout;
+
+		AudioManager.Instance.PlayMusic();
 	}
 
 
@@ -32,6 +34,8 @@ public partial class Map : Node2D
 	
 	private void _OnDayTimerTimeout()
 	{
+		AudioManager.Instance.StopMusic();
+
 		GD.Print("Der Tag ist zu Ende!");
 		
 		_timeLabel.Text = "Day over!"; 

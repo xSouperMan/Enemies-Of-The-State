@@ -157,6 +157,7 @@ public partial class Player : CharacterBody2D
 		{
 			return;
 		}
+		AudioManager.Instance.StartFootsteps();
 		if ((up || upJust) && !(down || downJust))
 		{
 			dir = Vector2.Up;
@@ -183,6 +184,7 @@ public partial class Player : CharacterBody2D
 		{
 			_isMoving = false;
 			UpdateAnimation(false);
+			AudioManager.Instance.StopFootsteps();
 			return;
 		}
 
@@ -191,6 +193,7 @@ public partial class Player : CharacterBody2D
 		{
 			_isMoving = false;
 			UpdateAnimation(false);
+			AudioManager.Instance.StopFootsteps();
 			return;
 		}
 
