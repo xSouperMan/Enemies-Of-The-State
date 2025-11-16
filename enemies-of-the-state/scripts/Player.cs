@@ -9,6 +9,16 @@ public partial class Player : CharacterBody2D
 	[Export] public TileMapLayer TileMapLayer2;
 	[Export] public TextureRect Paper;
 	[Export] public TextureRect Mail;
+	[Export] public TextureRect IDCard;
+	[Export] public TextureRect ID;
+	[Export] public RichTextLabel FirstName;
+	[Export] public RichTextLabel FamilyName;
+	[Export] public RichTextLabel Occupation;
+	[Export] public RichTextLabel Adress;
+	[Export] public RichTextLabel CriminalRecord;
+	[Export] public RichTextLabel Age;
+	[Export] public RichTextLabel ExpirationDate;
+	[Export] public ColorRect InteractionUI;
 
 	private bool _isMoving;
 	private Vector2 _startPos;
@@ -27,6 +37,7 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		HandleKeyPress();
 		if(_isMoving)
 		{
 			MoveStep((float)delta);
@@ -34,6 +45,29 @@ public partial class Player : CharacterBody2D
 		{
 			HandleInput();
 		}
+	}
+
+	private void HandleKeyPress()
+	{
+		
+
+		bool ePressed = Input.IsActionJustPressed("e");
+
+		
+		if(ePressed && Mail != null && Paper != null)
+		{
+			if(Mail.Visible)
+			{
+				Mail.Visible = false;
+				Paper.Visible = true;
+			} else
+			{
+				Mail.Visible = true;
+				Paper.Visible = false;
+			}
+		}
+
+		
 	}
 
 	private void UpdateAnimation(bool isMoving)
@@ -79,27 +113,45 @@ public partial class Player : CharacterBody2D
 
 		bool interactionJust = Input.IsActionJustPressed("interaction");
 
-		bool ePressed = Input.IsActionJustPressed("e");
+		bool qPressed = Input.IsActionJustPressed("q");
 
 		if(interactionJust)
 		{
 			HandleInteraction();
 		}
 
-		if(ePressed && Mail != null && Paper != null)
+		if(qPressed)
 		{
-			if(Mail.Visible)
+			if(!IDCard.Visible)
 			{
-				Mail.Visible = false;
-				Paper.Visible = true;
+				var npc = GetNpcAt(GlobalPosition + _facingDir*TILE_SIZE);
+				if(npc != null)
+				{
+					var data = npc.Data;
+					FirstName.Text = data.FirstName; 
+					FamilyName.Text = data.LastName;
+					Occupation.Text = data.Occupation;
+					Adress.Text = data.Address;
+					CriminalRecord.Text = data.CriminalRecord ? "YES" : "NO";
+					Age.Text = data.Age.ToString();
+					ExpirationDate.Text = data.IdExpirationDate;
+
+					ID.Visible = false;
+					IDCard.Visible = true;
+					InteractionUI.Visible = true;
+				}
 			} else
 			{
-				Mail.Visible = true;
-				Paper.Visible = false;
+				ID.Visible = true;
+				IDCard.Visible = false;
+				InteractionUI.Visible = false;
 			}
 		}
 
-
+		if(!CheckCanMove())
+		{
+			return;
+		}
 		if ((up || upJust) && !(down || downJust))
 		{
 			dir = Vector2.Up;
@@ -140,6 +192,15 @@ public partial class Player : CharacterBody2D
 		StartStep(dir);
 	}
 
+	private bool CheckCanMove()
+	{
+		if(IDCard.Visible)
+		{
+			return false;
+		}
+		return true;
+	}
+
 	private bool CheckIfInteractable()
 	{
 
@@ -153,7 +214,7 @@ public partial class Player : CharacterBody2D
 		{
 			GD.Print("interaction avaliable");
 
-			var npcs = GetTree().GetNodesInGroup("NPC");
+			var npcs = GetTree().GetNodesInGroup("NPCs");
 
 			NPC currentNPC = new NPC();
 
@@ -367,5 +428,23 @@ public partial class Player : CharacterBody2D
 			}
 		}
 		return false;
+	}
+
+	private NPC GetNpcAt(Vector2 targetWorldPos)
+	{
+		var npcs = GetTree().GetNodesInGroup("NPCs");
+
+		foreach (var npc in npcs)
+		{
+			if(npc is NPC)
+			{
+				NPC _npc = (NPC) npc;
+				if(targetWorldPos.DistanceTo(_npc.GlobalPosition) <= 1f)
+				{
+					return _npc;
+				}
+			}
+		}
+		return null;
 	}
 }
