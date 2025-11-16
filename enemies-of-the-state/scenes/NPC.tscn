@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://d1pm8mt6t7wie"]
+[gd_scene load_steps=13 format=3 uid="uid://d1pm8mt6t7wie"]
 
 [ext_resource type="Script" uid="uid://0eomojwi6we5" path="res://scripts/NPC.cs" id="1_6xvi5"]
 [ext_resource type="Texture2D" uid="uid://dqkk7qqjemv1f" path="res://assets/people/3. npc.png" id="2_6xvi5"]
 [ext_resource type="Script" uid="uid://c2psgh4iodx47" path="res://scripts/Bubble.cs" id="3_jnjht"]
 [ext_resource type="Texture2D" uid="uid://c35qmjfv44itj" path="res://assets/objects/SpeechBubble.png" id="3_ktgr7"]
+[ext_resource type="Texture2D" uid="uid://bggpwiw155yle" path="res://assets/people/shadow.png" id="5_7pv12"]
 
 [sub_resource type="Animation" id="Animation_jnjht"]
 length = 0.001
@@ -150,3 +151,10 @@ autowrap_mode = 3
 wait_time = 2.0
 
 [node name="Deport" type="Timer" parent="."]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.44313726)
+z_index = -1
+texture_filter = 1
+position = Vector2(8, 11)
+texture = ExtResource("5_7pv12")
