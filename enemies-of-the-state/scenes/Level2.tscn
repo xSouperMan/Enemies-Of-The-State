@@ -1,22 +1,22 @@
-[gd_scene load_steps=22 format=4 uid="uid://vgmn2wdrkaav"]
+[gd_scene load_steps=22 format=4 uid="uid://ddi8mul6v53wc"]
 
-[ext_resource type="PackedScene" uid="uid://4dj64hgycw1o" path="res://scenes/Player.tscn" id="1_5hauk"]
-[ext_resource type="Script" uid="uid://b35q1s0r4es1f" path="res://scripts/Map.cs" id="1_pgwcf"]
-[ext_resource type="Texture2D" uid="uid://cxgwwgibchfpm" path="res://assets/terrain/Street.png" id="2_lajc7"]
-[ext_resource type="PackedScene" uid="uid://d1pm8mt6t7wie" path="res://scenes/NPC.tscn" id="2_xkm8s"]
-[ext_resource type="Texture2D" uid="uid://d0yhooaknu84l" path="res://assets/objects/paper.png" id="3_46d0c"]
-[ext_resource type="Texture2D" uid="uid://cko32hpypw77a" path="res://assets/objects/Mail.png" id="3_d46yu"]
-[ext_resource type="Texture2D" uid="uid://yxg76gl42kc8" path="res://assets/terrain/Environment_Tiles.png" id="3_inly4"]
-[ext_resource type="Script" uid="uid://6ld4xf1fj3ks" path="res://scripts/NPCManager.cs" id="3_tm3qm"]
-[ext_resource type="Texture2D" uid="uid://h7dd2sb1rce3" path="res://assets/objects/home_inside.png" id="3_xkm8s"]
-[ext_resource type="Texture2D" uid="uid://x18lfibvc02k" path="res://assets/objects/ID.png" id="4_hit12"]
-[ext_resource type="Texture2D" uid="uid://bifobiktxh8uk" path="res://assets/objects/IDBackground.png" id="5_sdw7q"]
-[ext_resource type="PackedScene" uid="uid://nrpfy1f2c8xl" path="res://scenes/Teleporter.tscn" id="6_41ykk"]
-[ext_resource type="Script" uid="uid://2gu4vr33m5qd" path="res://scripts/InteractionUi.cs" id="6_pgwcf"]
-[ext_resource type="PackedScene" uid="uid://bys3hwbp6omru" path="res://scenes/NPC_Location.tscn" id="8_7ctrk"]
+[ext_resource type="Script" uid="uid://b35q1s0r4es1f" path="res://scripts/Map.cs" id="1_wd6ad"]
+[ext_resource type="Texture2D" uid="uid://d0yhooaknu84l" path="res://assets/objects/paper.png" id="2_cd1f0"]
+[ext_resource type="Texture2D" uid="uid://cko32hpypw77a" path="res://assets/objects/Mail.png" id="3_k83s3"]
+[ext_resource type="Texture2D" uid="uid://x18lfibvc02k" path="res://assets/objects/ID.png" id="4_2jdof"]
+[ext_resource type="Script" uid="uid://2gu4vr33m5qd" path="res://scripts/InteractionUi.cs" id="5_rfxww"]
+[ext_resource type="Texture2D" uid="uid://bifobiktxh8uk" path="res://assets/objects/IDBackground.png" id="6_2ax8h"]
+[ext_resource type="PackedScene" uid="uid://4dj64hgycw1o" path="res://scenes/Player.tscn" id="7_0roy1"]
+[ext_resource type="Script" uid="uid://6ld4xf1fj3ks" path="res://scripts/NPCManager.cs" id="8_epefj"]
+[ext_resource type="PackedScene" uid="uid://d1pm8mt6t7wie" path="res://scenes/NPC.tscn" id="9_24quv"]
+[ext_resource type="PackedScene" uid="uid://nrpfy1f2c8xl" path="res://scenes/Teleporter.tscn" id="10_h35wg"]
+[ext_resource type="PackedScene" uid="uid://bys3hwbp6omru" path="res://scenes/NPC_Location.tscn" id="11_2hnyg"]
+[ext_resource type="Texture2D" uid="uid://h7dd2sb1rce3" path="res://assets/objects/home_inside.png" id="12_i5l08"]
+[ext_resource type="Texture2D" uid="uid://yxg76gl42kc8" path="res://assets/terrain/Environment_Tiles.png" id="13_hx5ho"]
+[ext_resource type="Texture2D" uid="uid://cxgwwgibchfpm" path="res://assets/terrain/Street.png" id="14_lgxow"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tm3qm"]
-texture = ExtResource("3_xkm8s")
+texture = ExtResource("12_i5l08")
 0:0/0 = 0
 1:0/0 = 0
 1:0/0/custom_data_1 = true
@@ -27,7 +27,7 @@ texture = ExtResource("3_xkm8s")
 2:1/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7ctrk"]
-texture = ExtResource("3_inly4")
+texture = ExtResource("13_hx5ho")
 1:0/0 = 0
 1:0/0/custom_data_1 = true
 2:0/0 = 0
@@ -279,7 +279,7 @@ texture = ExtResource("3_inly4")
 15:2/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yyirk"]
-texture = ExtResource("2_lajc7")
+texture = ExtResource("14_lgxow")
 1:0/0 = 0
 2:0/0 = 0
 3:0/0 = 0
@@ -320,7 +320,7 @@ sources/2 = SubResource("TileSetAtlasSource_yyirk")
 sources/1 = SubResource("TileSetAtlasSource_7ctrk")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ii6k2"]
-texture = ExtResource("3_inly4")
+texture = ExtResource("13_hx5ho")
 1:0/0 = 0
 1:0/0/z_index = 51
 2:0/0 = 0
@@ -617,7 +617,7 @@ texture = ExtResource("3_inly4")
 10:4/0/custom_data_0 = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_46d0c"]
-texture = ExtResource("3_xkm8s")
+texture = ExtResource("12_i5l08")
 3:0/0 = 0
 3:0/0/z_index = 51
 0:1/0 = 0
@@ -645,7 +645,7 @@ sources/0 = SubResource("TileSetAtlasSource_ii6k2")
 sources/1 = SubResource("TileSetAtlasSource_46d0c")
 
 [node name="World" type="Node2D"]
-script = ExtResource("1_pgwcf")
+script = ExtResource("1_wd6ad")
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
@@ -667,7 +667,7 @@ offset_top = 162.0
 offset_right = 837.0
 offset_bottom = 242.0
 scale = Vector2(4.6807947, 5.0540466)
-texture = ExtResource("3_46d0c")
+texture = ExtResource("2_cd1f0")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer2/UIRoot/Paper"]
 layout_mode = 0
@@ -681,8 +681,10 @@ text = "Officer,
 
 we have a job for you today.
 
-Make sure to arrest at least 3 people that would be considered an enemy of our state.
+Make sure to arrest at least 5 socialists.
 You have until nightfall.
+
+
 
 
 
@@ -706,7 +708,7 @@ offset_left = 893.0
 offset_top = 598.0
 offset_right = 933.0
 offset_bottom = 638.0
-texture = ExtResource("3_d46yu")
+texture = ExtResource("3_k83s3")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer2/UIRoot/Mail"]
 layout_mode = 0
@@ -723,7 +725,7 @@ offset_left = 163.0
 offset_top = 588.0
 offset_right = 259.0
 offset_bottom = 652.0
-texture = ExtResource("4_hit12")
+texture = ExtResource("4_2jdof")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer2/UIRoot/ID"]
 layout_mode = 0
@@ -741,7 +743,7 @@ offset_top = 150.0
 offset_right = 737.0
 offset_bottom = 566.0
 color = Color(0.3764706, 0.3764706, 0.3764706, 0.38431373)
-script = ExtResource("6_pgwcf")
+script = ExtResource("5_rfxww")
 Deport = NodePath("deport")
 ComingBack = NodePath("comebacklater")
 NoDeport = NodePath("nodeport")
@@ -781,7 +783,7 @@ offset_top = 38.0
 offset_right = 407.9995
 offset_bottom = 294.00012
 scale = Vector2(0.79, 0.79)
-texture = ExtResource("5_sdw7q")
+texture = ExtResource("6_2ax8h")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer2/UIRoot/InteractionUI/IDCard"]
 layout_mode = 0
@@ -928,10 +930,10 @@ offset_bottom = 52.0
 text = "Deported Today: 0"
 horizontal_alignment = 2
 
-[node name="Player" parent="." node_paths=PackedStringArray("TileMapLayer1", "TileMapLayer2", "Paper", "Mail", "ID", "FirstName", "FamilyName", "Occupation", "Adress", "CriminalRecord", "Age", "ExpirationDate", "InteractionUI", "DeportedCountDisplay") instance=ExtResource("1_5hauk")]
+[node name="Player" parent="." node_paths=PackedStringArray("TileMapLayer1", "TileMapLayer2", "Paper", "Mail", "ID", "FirstName", "FamilyName", "Occupation", "Adress", "CriminalRecord", "Age", "ExpirationDate", "InteractionUI", "DeportedCountDisplay") instance=ExtResource("7_0roy1")]
 z_index = 50
 position = Vector2(-4528, -112)
-Quota = 3
+Quota = 5
 TileMapLayer1 = NodePath("../TileMapLayers/TileMapLayer")
 TileMapLayer2 = NodePath("../TileMapLayers/TileMapLayer2")
 Paper = NodePath("../CanvasLayer2/UIRoot/Paper")
@@ -953,86 +955,106 @@ zoom = Vector2(4, 4)
 
 [node name="NPCManager" type="Node2D" parent="."]
 texture_filter = 1
-script = ExtResource("3_tm3qm")
-NpcScene = ExtResource("2_xkm8s")
+script = ExtResource("8_epefj")
+NpcScene = ExtResource("9_24quv")
 
 [node name="Teleporters" type="Node" parent="." groups=["Teleporters"]]
 
-[node name="tp_house4_o" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("6_41ykk")]
+[node name="tp_house4_o" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("10_h35wg")]
 position = Vector2(912, -448)
 teleport_to = NodePath("../tp_house4_i")
 
-[node name="tp_house3_o" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("6_41ykk")]
+[node name="tp_house3_o" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("10_h35wg")]
 position = Vector2(768, -448)
 teleport_to = NodePath("../tp_house3_i")
 
-[node name="tp_house2_o" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("6_41ykk")]
+[node name="tp_house2_o" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("10_h35wg")]
 position = Vector2(608, -448)
 teleport_to = NodePath("../tp_house2_i")
 
-[node name="tp_house4_i" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("6_41ykk")]
+[node name="tp_house4_i" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("10_h35wg")]
 position = Vector2(-5632, 384)
 teleport_to = NodePath("../tp_house4_o")
 
-[node name="tp_house3_i" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("6_41ykk")]
+[node name="tp_house3_i" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("10_h35wg")]
 position = Vector2(-5104, 720)
 teleport_to = NodePath("../tp_house3_o")
 
-[node name="tp_house2_i" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("6_41ykk")]
+[node name="tp_house2_i" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("10_h35wg")]
 position = Vector2(-4544, 672)
 teleport_to = NodePath("../tp_house2_o")
 
-[node name="tp_house_1_entrance" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("6_41ykk")]
+[node name="tp_house_1_entrance" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("10_h35wg")]
 position = Vector2(-4928, 400)
 teleport_to = NodePath("../tp_house_1")
 
-[node name="tp_house_1" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("6_41ykk")]
+[node name="tp_house_1" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("10_h35wg")]
 position = Vector2(32, -48)
 teleport_to = NodePath("../tp_house_1_entrance")
 
-[node name="tp_player_home_eg" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("6_41ykk")]
+[node name="tp_player_home_eg" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("10_h35wg")]
 position = Vector2(-4976, -112)
 teleport_to = NodePath("../tp_player_home_og")
 
-[node name="tp_player_home_og" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("6_41ykk")]
+[node name="tp_player_home_og" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("10_h35wg")]
 position = Vector2(-4576, -96)
 teleport_to = NodePath("../tp_player_home_eg")
 
-[node name="tp_player_home_entrance" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("6_41ykk")]
+[node name="tp_player_home_entrance" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("10_h35wg")]
 position = Vector2(-4912, 0)
 teleport_to = NodePath("../tp_player_home")
 
-[node name="tp_player_home" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("6_41ykk")]
+[node name="tp_player_home" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("10_h35wg")]
 position = Vector2(-48, -48)
 teleport_to = NodePath("../tp_player_home_entrance")
 
-[node name="tp_player_home_stairs" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("6_41ykk")]
+[node name="tp_player_home_stairs" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("10_h35wg")]
 position = Vector2(-4976, -128)
 teleport_to = NodePath("../tp_player_home_og")
 
-[node name="tp_house1_o" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("6_41ykk")]
+[node name="tp_house1_o" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("10_h35wg")]
 position = Vector2(448, -448)
 teleport_to = NodePath("../tp_house1_i")
 
-[node name="tp_house1_i" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("6_41ykk")]
+[node name="tp_house1_i" parent="Teleporters" node_paths=PackedStringArray("teleport_to") groups=["Teleporters"] instance=ExtResource("10_h35wg")]
 position = Vector2(-4496, 384)
 teleport_to = NodePath("../tp_house1_o")
 
 [node name="NPCs" type="Node" parent="."]
 
-[node name="NPClocation4" parent="NPCs" groups=["NPC"] instance=ExtResource("8_7ctrk")]
+[node name="NPClocation6" parent="NPCs" groups=["NPC"] instance=ExtResource("11_2hnyg")]
+position = Vector2(64, -302)
+scale = Vector2(4.6807947, 5.0540466)
+
+[node name="NPClocation7" parent="NPCs" groups=["NPC"] instance=ExtResource("11_2hnyg")]
+position = Vector2(176, -80)
+scale = Vector2(4.6807947, 5.0540466)
+
+[node name="NPClocation8" parent="NPCs" groups=["NPC"] instance=ExtResource("11_2hnyg")]
+position = Vector2(-240, 0)
+scale = Vector2(4.6807947, 5.0540466)
+
+[node name="NPClocation9" parent="NPCs" groups=["NPC"] instance=ExtResource("11_2hnyg")]
+position = Vector2(784, -112)
+scale = Vector2(4.6807947, 5.0540466)
+
+[node name="NPClocation10" parent="NPCs" groups=["NPC"] instance=ExtResource("11_2hnyg")]
+position = Vector2(704, 48)
+scale = Vector2(4.6807947, 5.0540466)
+
+[node name="NPClocation4" parent="NPCs" groups=["NPC"] instance=ExtResource("11_2hnyg")]
 position = Vector2(-4480, 320)
 
-[node name="NPClocation" parent="NPCs" groups=["NPC"] instance=ExtResource("8_7ctrk")]
+[node name="NPClocation" parent="NPCs" groups=["NPC"] instance=ExtResource("11_2hnyg")]
 position = Vector2(-4960, 320)
 
-[node name="NPClocation2" parent="NPCs" groups=["NPC"] instance=ExtResource("8_7ctrk")]
+[node name="NPClocation2" parent="NPCs" groups=["NPC"] instance=ExtResource("11_2hnyg")]
 position = Vector2(-4560, 624)
 
-[node name="NPClocation3" parent="NPCs" groups=["NPC"] instance=ExtResource("8_7ctrk")]
+[node name="NPClocation3" parent="NPCs" groups=["NPC"] instance=ExtResource("11_2hnyg")]
 position = Vector2(-5088, 672)
 
-[node name="NPClocation5" parent="NPCs" groups=["NPC"] instance=ExtResource("8_7ctrk")]
+[node name="NPClocation5" parent="NPCs" groups=["NPC"] instance=ExtResource("11_2hnyg")]
 position = Vector2(-5648, 320)
 
 [node name="TileMapLayers" type="Node" parent="."]
@@ -1049,7 +1071,7 @@ tile_map_data = PackedByteArray("AAD7//n/AAAAAAEAAAD8//j/AAAAAAEAAAAAAPn/AAAAAAE
 tile_set = SubResource("TileSet_46d0c")
 
 [node name="DayTimer" type="Timer" parent="."]
-wait_time = 120.0
+wait_time = 60.0
 one_shot = true
 autostart = true
 

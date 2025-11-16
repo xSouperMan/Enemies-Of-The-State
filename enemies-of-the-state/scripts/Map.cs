@@ -41,12 +41,27 @@ public partial class Map : Node2D
 		
 		_timeLabel.Text = "Day over!"; 
 		
-		if(player.Quota > player.DeportedCount)
+		if (player.Quota > player.DeportedCount)
 		{
 			GetTree().ChangeSceneToFile("res://scenes/LoseScreen.tscn");
 			return;
 		}
 
-		GetTree().ChangeSceneToFile("res://scenes/tages_zusammenfassung.tscn");
+		var currentScenePath = SceneFilePath;
+
+		switch (currentScenePath)
+		{
+			case "res://scenes/Map.tscn":
+				GetTree().ChangeSceneToFile("res://scenes/Level2.tscn");
+				break;
+
+			case "res://scenes/Level2.tscn":
+				GetTree().ChangeSceneToFile("res://scenes/End.tscn");
+				break;
+
+			default:
+				GetTree().ChangeSceneToFile("res://scenes/End.tscn");
+				break;
+		}
 	}
 }
