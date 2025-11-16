@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d1pm8mt6t7wie"]
+[gd_scene load_steps=12 format=3 uid="uid://d1pm8mt6t7wie"]
 
 [ext_resource type="Script" uid="uid://0eomojwi6we5" path="res://scripts/NPC.cs" id="1_6xvi5"]
 [ext_resource type="Texture2D" uid="uid://dqkk7qqjemv1f" path="res://assets/people/3. npc.png" id="2_6xvi5"]
@@ -97,6 +97,11 @@ _data = {
 &"idle_up": SubResource("Animation_ktgr7")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_jnjht"]
+line_spacing = -3.83
+font_color = Color(0, 0, 0, 1)
+shadow_size = 0
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 z_index = 50
 script = ExtResource("1_6xvi5")
@@ -124,6 +129,7 @@ offset_bottom = 40.0
 script = ExtResource("3_jnjht")
 
 [node name="TextureRect" type="TextureRect" parent="Bubble"]
+texture_filter = 1
 layout_mode = 0
 offset_top = -24.0
 offset_right = 48.0
@@ -131,8 +137,14 @@ texture = ExtResource("3_ktgr7")
 
 [node name="Label" type="Label" parent="Bubble/TextureRect"]
 layout_mode = 0
-offset_right = 48.0
-offset_bottom = 24.0
+offset_left = 2.2
+offset_top = 1.63
+offset_right = 192.2
+offset_bottom = 91.63
+scale = Vector2(0.23, 0.23)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+label_settings = SubResource("LabelSettings_jnjht")
+autowrap_mode = 3
 
 [node name="Timer" type="Timer" parent="Bubble"]
 wait_time = 2.0
