@@ -1,18 +1,22 @@
-[gd_scene format=3 uid="uid://cb8r22oyd827c"]
+[gd_scene load_steps=2 format=3 uid="uid://cb8r22oyd827c"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="Script" uid="uid://dm5lwgjuu28ko" path="res://scripts/StartControl.cs" id="1_0cvrp"]
+
+[node name="Node2D2" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("back")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_0cvrp")
+back = NodePath("Button")
 metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="Button" parent="CanvasLayer/Control"]
